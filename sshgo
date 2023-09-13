@@ -13,6 +13,7 @@ locale.setlocale(locale.LC_ALL, 'en_US')
 script = sys.path[0] + "/login.sh"
 script_nest = sys.path[0] + "/login_nest.sh"
 sshHosts = "~/.ssh_hosts"
+#sshHosts = sys.path[0] + "/hosts"
 
 def _assert(exp, err):
     if not exp:
@@ -413,6 +414,8 @@ class SSHGO:
             #linenum = self.top_line_number + index
 
             line = node['line']
+            if 'user' in node:
+                line += ' ' + node['user']
             if len(node['sub_lines']):
                 line += '(%d)' % len(node['sub_lines'])
 
